@@ -1,0 +1,12 @@
+.station {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  height: 40px;
+  border: 1px solid #ccc;
+  padding: 0.5em 1em;
+  color: #fff;
+  text-align: center;
+  transition: all .3s ease;
+}
