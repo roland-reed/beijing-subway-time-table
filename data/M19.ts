@@ -1,4 +1,4 @@
-import { Line } from '../shared';
+import { Line, Station } from '../shared';
 
 const M19: Line = {
   name: '19 号线',
@@ -45,7 +45,7 @@ const M19: Line = {
       name: '新宫',
       transfers: ['M4'],
     },
-  ],
+  ].reverse() as Station[],
 };
 
 export default M19;

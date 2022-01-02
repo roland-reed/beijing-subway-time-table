@@ -34,7 +34,7 @@ const M25S: Line = {
     {
       name: '燕山',
     },
-  ],
+  ].reverse(),
 };
 
 export default M25S;

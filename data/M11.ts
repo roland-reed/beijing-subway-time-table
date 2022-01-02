@@ -6,10 +6,9 @@ const M11: Line = {
   code: 'M11',
   color: '#ED796B',
   stations: [
-    {
-      name: '模式口',
-      state: 'paused',
-    },
+    // {
+    //   name: '模式口',
+    // },
     {
       name: '金安桥',
       transfers: ['M6', 'M26'],
@@ -20,7 +19,7 @@ const M11: Line = {
     {
       name: '新首钢',
     },
-  ],
+  ].reverse(),
 };
 
 export default M11;

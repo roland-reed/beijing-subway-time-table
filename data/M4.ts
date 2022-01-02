@@ -122,7 +122,7 @@ const M4: Line = {
     {
       name: '天宫院',
     },
-  ],
+  ].reverse(),
 };
 
 export default M4;

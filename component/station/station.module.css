@@ -13,7 +13,7 @@
 }
 
 .name {
-  font-size: 1.2em;
+  font-size: 1em;
   display: flex;
   padding: 0 1em;
   flex-direction: column;
@@ -36,6 +36,7 @@
 }
 
 .transfer {
+  font-family: 'icomoon';
   width: 100%;
   height: 100%;
   color: #fff;

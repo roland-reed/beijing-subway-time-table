@@ -2,7 +2,7 @@ import { Line } from '../shared';
 
 const M34: Line = {
   name: '首都机场线',
-  shortName: '首都✈️',
+  shortName: '首都\ue9af',
   code: 'M34',
   color: '#A192B2',
   stations: [

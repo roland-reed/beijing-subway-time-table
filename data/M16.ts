@@ -60,7 +60,7 @@ const M16: Line = {
     {
       name: '玉渊潭东门',
     },
-  ],
+  ].reverse(),
 };
 
 export default M16;

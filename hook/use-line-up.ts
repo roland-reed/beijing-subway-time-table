@@ -30,6 +30,8 @@ export function useLineUp(options: LineUpOptions) {
   };
   const onTouchStart:  React.UIEventHandler<HTMLDivElement> = () => {
     context.current.touching = true;
+    const { timeoutId } = context.current;
+    timeoutId && clearTimeout(timeoutId);
   }
   const onTouchEnd: React.UIEventHandler<HTMLDivElement> = () => {
     context.current.timeoutId = lazyLineUp();

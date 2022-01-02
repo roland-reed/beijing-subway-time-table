@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  font-family: "display";
+  font-size: 1.25em;
+  overflow: scroll;
+}
+
+.current {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.departure-time {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.diff {
+  padding-left: 0.5em;
+  font-weight: bold;
+}

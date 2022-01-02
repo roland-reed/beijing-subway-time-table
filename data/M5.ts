@@ -85,7 +85,7 @@ const M5: Line = {
       name: '宋家庄',
       transfers: ['M10', 'M24'],
     },
-  ],
+  ].reverse(),
 };
 
 export default M5;

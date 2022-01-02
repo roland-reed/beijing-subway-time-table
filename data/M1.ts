@@ -1,4 +1,4 @@
-import { Line } from '../shared';
+import { Line, DepartureMinute, HourDepartureTime, WeekDepartureTime } from '../shared';
 
 const M1: Line = {
   name: '1 号线 | 八通线',
@@ -9,6 +9,87 @@ const M1: Line = {
     {
       name: '苹果园',
       transfers: ['M6', 'M26'],
+      get departureTime() {
+        const normalDayDeparture: HourDepartureTime = {
+          4: [57],
+          5: [1, 4, 8, 13, 16, 20, 24, 28, 30, 33, 36, 39, 42, 46, 49, 53, 56, 59],
+          6: [
+            2,
+            5,
+            8,
+            11,
+            '13->果园',
+            15,
+            18,
+            21,
+            '23->果园',
+            25,
+            27,
+            31,
+            '33->果园',
+            35,
+            37,
+            40,
+            42,
+            45,
+            48,
+            51,
+            54,
+            '56->果园',
+            58,
+          ],
+          7: [
+            0,
+            2,
+            '4->果园',
+            6,
+            '8->土桥',
+            10,
+            '12->果园',
+            14,
+            16,
+            '18->土桥',
+            '20->果园',
+            22,
+            24,
+            26,
+            '28->果园',
+            30,
+            '32->土桥',
+            34,
+            '36->果园',
+            38,
+            '40->土桥',
+            42,
+            '44->土桥',
+            '46->果园',
+            48,
+            '50->土桥',
+            52,
+            '54->土桥',
+            56,
+            '58->土桥',
+          ],
+          21: [0, '4->四惠', 7, '11->四惠', 14, 21, 28, 35, 42, 49, 56],
+          22: [3, 10, 17, 25, 33, 41, 51, '57->四惠东'],
+          23: ['4->四惠东', '11->四惠东', '18->四惠东', '25->四惠东', '33->四惠东'],
+        };
+        const weekendDeparture: HourDepartureTime = {};
+        const upDepartureTime: WeekDepartureTime = {
+          monday: normalDayDeparture,
+          tuesday: normalDayDeparture,
+          wednesday: normalDayDeparture,
+          thursday: normalDayDeparture,
+          friday: normalDayDeparture,
+          saturday: weekendDeparture,
+          sunday: weekendDeparture,
+        };
+
+        return {
+          up: upDepartureTime,
+          down: upDepartureTime,
+        };
+      },
     },
     {
       name: '古城',

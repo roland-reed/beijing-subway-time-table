@@ -40,7 +40,10 @@ export function Station(props: {
             className={styles.transfer}
             style={{ backgroundColor: lineMap[transfer as keyof typeof lineMap].color }}
             key={transfer}
-            onClick={() => props.setLine(transfer)}
+            onClick={e => {
+              e.stopPropagation();
+              props.setLine(transfer);
+            }}
           >
             {lineMap[transfer as keyof typeof lineMap].shortName}
           </div>

@@ -25,7 +25,7 @@ const XJ: Line = {
     {
       name: '香山',
     },
-  ],
+  ].reverse(),
 };
 
 export default XJ;

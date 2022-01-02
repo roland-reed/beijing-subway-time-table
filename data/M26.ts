@@ -32,7 +32,7 @@ const M26: Line = {
     {
       name: '石厂',
     },
-  ],
+  ].reverse(),
 };
 
 export default M26;

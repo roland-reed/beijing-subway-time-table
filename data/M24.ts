@@ -51,7 +51,7 @@ const M24: Line = {
     {
       name: '亦庄火车站',
     },
-  ],
+  ].reverse(),
 };
 
 export default M24;

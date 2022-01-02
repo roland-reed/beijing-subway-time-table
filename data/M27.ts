@@ -48,7 +48,7 @@ const M27: Line = {
       name: '清河站',
       transfers: ['M13'],
     },
-  ],
+  ].reverse(),
 };
 
 export default M27;

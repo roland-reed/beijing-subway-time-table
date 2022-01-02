@@ -2,7 +2,7 @@ import { Line } from '../shared';
 
 const M35: Line = {
   name: '大兴机场线',
-  shortName: '大兴✈️',
+  shortName: '大兴\ue9af',
   code: 'M35',
   color: '#004A9F',
   stations: [
@@ -16,7 +16,7 @@ const M35: Line = {
     {
       name: '大兴机场',
     },
-  ],
+  ].reverse(),
 };
 
 export default M35;

@@ -1,18 +1,26 @@
 import React from 'react';
-import { Line as LineProps, smoothScroll, narrowRange } from '../../shared';
+import { Line as LineProps, smoothScroll, narrowRange, Day } from '../../shared';
 import { Station } from '../station';
 import { ScrollContainer } from '../scroll-container';
+import { TimeList } from '../time-list';
 import styles from './line.module.css';
 import { useLineUp } from '../../hook';
-import ArrowLeft from './arrow-left.svg';
-import ArrowRight from './arrow-right.svg';
+// import ArrowLeft from './arrow-left.svg';
+// import ArrowRight from './arrow-right.svg';
+import * as icon from '../icon';
+
+const DAY: Day[] = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
 export function Line(props: { line: LineProps; setLine: (line: string) => void }): React.ReactElement {
   const ref = React.createRef<HTMLDivElement>();
+  const [day, setDay] = React.useState(DAY[new Date().getDay()]);
   const [paddingTop, setPaddingTop] = React.useState(0);
   const [selected, setSelected] = React.useState(0);
   const lineHeightList = React.useRef<number[]>([]);
-  const narrow = React.useCallback(narrowRange(0, props.line.stations.length - 1), [props.line.stations.length - 1, ref]);
+  const narrow = React.useCallback(narrowRange(0, props.line.stations.length - 1), [
+    props.line.stations.length - 1,
+    ref,
+  ]);
   const { onScroll, onTouchEnd, onTouchStart } = useLineUp({
     ref,
     lineUp: div => {
@@ -46,10 +54,21 @@ export function Line(props: { line: LineProps; setLine: (line: string) => void }
   }, [props.line.code]);
 
   return (
-    <>
+    <div className={styles['line-wrapper']}>
+      <TimeList day={day} direction="up" line={props.line} index={selected} />
       <div className={styles.line} onScroll={e => console.log((e.target as HTMLDivElement).scrollTop)}>
-        <div className={styles.indicator}>
-          <ArrowRight className={styles['indicator-svg']} fill={props.line.color} />
+        <div className={styles.indicator} style={{ color: props.line.color }}>
+          <div className={styles.direction}>
+            <icon.ArrowDown />
+            <icon.ArrowDown />
+            <icon.ArrowDown />
+          </div>
+          <icon.ArrowRight />
+          <div className={styles.direction}>
+            <icon.ArrowDown />
+            <icon.ArrowDown />
+            <icon.ArrowDown />
+          </div>
         </div>
         <ScrollContainer
           style={{
@@ -75,11 +94,21 @@ export function Line(props: { line: LineProps; setLine: (line: string) => void }
             />
           ))}
         </ScrollContainer>
-        <div className={styles.indicator}>
-          <ArrowLeft className={styles['indicator-svg']} fill={props.line.color} />
+        <div className={styles.indicator} style={{ color: props.line.color }}>
+          <div className={styles.direction}>
+            <icon.ArrowUp />
+            <icon.ArrowUp />
+            <icon.ArrowUp />
+          </div>
+          <icon.ArrowLeft />
+          <div className={styles.direction}>
+            <icon.ArrowUp />
+            <icon.ArrowUp />
+            <icon.ArrowUp />
+          </div>
         </div>
       </div>
-      <div>selected: {selected}</div>
-    </>
+      <TimeList day="monday" direction="down" line={props.line} index={selected} />
+    </div>
   );
 }

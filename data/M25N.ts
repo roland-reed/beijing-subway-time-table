@@ -57,7 +57,7 @@ const M25N: Line = {
     {
       name: '阎村东',
     },
-  ],
+  ].reverse(),
 };
 
 export default M25N;

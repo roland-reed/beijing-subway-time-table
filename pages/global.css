@@ -15,3 +15,64 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@font-face {
+  font-family: "display";
+  src: url("/display.woff") format("woff");
+  src: url("/display.ttf") format("truetype"),
+    url("/display.eot") format("embedded-opentype"),
+    url("/display.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "icomoon";
+  src: url("/icomoon.eot?3kwwpv");
+  src: url("/icomoon.eot?3kwwpv#iefix") format("embedded-opentype"),
+    url("/icomoon.ttf?3kwwpv") format("truetype"),
+    url("/icomoon.woff?3kwwpv") format("woff"),
+    url("/icomoon.svg?3kwwpv#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icomoon" !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-air-port:before {
+  content: "\e9af";
+}
+
+.icon-warning:before {
+  content: "\ea07";
+}
+
+.icon-arrow-up:before {
+  content: "\ea3a";
+}
+
+.icon-arrow-right:before {
+  content: "\ea3c";
+}
+
+.icon-arrow-down:before {
+  content: "\ea3e";
+}
+
+.icon-arrow-left:before {
+  content: "\ea40";
+}
+

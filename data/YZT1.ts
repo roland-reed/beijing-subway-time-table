@@ -6,10 +6,10 @@ const YZT1: Line = {
   code: 'YZT1',
   color: '#E5061B',
   stations: [
-    {
-      name: '老观里',
-      state: 'paused',
-    },
+    // {
+    //   name: '老观里',
+    //   state: 'paused',
+    // },
     {
       name: '屈庄',
     },

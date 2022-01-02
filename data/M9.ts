@@ -53,7 +53,7 @@ const M9: Line = {
       name: '郭公庄',
       transfers: ['M25N'],
     },
-  ],
+  ].reverse(),
 };
 
 export default M9;

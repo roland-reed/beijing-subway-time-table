@@ -29,7 +29,7 @@ const M17: Line = {
     {
       name: '嘉会湖',
     },
-  ],
+  ].reverse(),
 };
 
 export default M17;
