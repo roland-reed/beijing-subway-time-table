@@ -18,10 +18,10 @@ a {
 
 @font-face {
   font-family: "display";
-  src: url("/display.woff") format("woff");
-  src: url("/display.ttf") format("truetype"),
-    url("/display.eot") format("embedded-opentype"),
-    url("/display.otf") format("opentype");
+  src: url("/digital-7-mono.woff") format("woff");
+  src: url("/digital-7-mono.ttf") format("truetype"),
+    url("/digital-7-mono.eot") format("embedded-opentype"),
+    url("/digital-7-mono.otf") format("opentype");
 }
 
 @font-face {

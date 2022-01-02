@@ -59,14 +59,18 @@ export function Line(props: { line: LineProps; setLine: (line: string) => void }
       <div className={styles.line} onScroll={e => console.log((e.target as HTMLDivElement).scrollTop)}>
         <div className={styles.indicator} style={{ color: props.line.color }}>
           <div className={styles.direction}>
-            <icon.ArrowDown />
-            <icon.ArrowDown />
-            <icon.ArrowDown />
+            <span>&#8203;</span>
+            <span>&#8203;</span>
+            <span>&#8203;</span>
+            <span>&#8203;</span>
+            <span>&#8203;</span>
           </div>
           <icon.ArrowRight />
           <div className={styles.direction}>
-            <icon.ArrowDown />
-            <icon.ArrowDown />
+            <span>运</span>
+            <span>行</span>
+            <span>方</span>
+            <span>向</span>
             <icon.ArrowDown />
           </div>
         </div>
@@ -97,14 +101,18 @@ export function Line(props: { line: LineProps; setLine: (line: string) => void }
         <div className={styles.indicator} style={{ color: props.line.color }}>
           <div className={styles.direction}>
             <icon.ArrowUp />
-            <icon.ArrowUp />
-            <icon.ArrowUp />
+            <span>运</span>
+            <span>行</span>
+            <span>方</span>
+            <span>向</span>
           </div>
           <icon.ArrowLeft />
           <div className={styles.direction}>
-            <icon.ArrowUp />
-            <icon.ArrowUp />
-            <icon.ArrowUp />
+            <span>&#8203;</span>
+            <span>&#8203;</span>
+            <span>&#8203;</span>
+            <span>&#8203;</span>
+            <span>&#8203;</span>
           </div>
         </div>
       </div>

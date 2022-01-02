@@ -37,16 +37,16 @@ function pickColor(diff: number): string | undefined {
   if (diff < 0) {
     return undefined;
   }
-  if (diff < 3) {
+  if (diff <= 5) {
     return '#1b5e20';
   }
-  if (diff < 6) {
+  if (diff <= 10) {
     return '#2e7d32';
   }
-  if (diff < 9) {
+  if (diff <= 15) {
     return '#388e3c';
   }
-  if (diff < 15) {
+  if (diff <= 20) {
     return '#43a047';
   }
   return undefined;
@@ -115,9 +115,8 @@ export const TimeList: React.FC<{ line: Line; index: number; day: Day; direction
   day,
 }) => {
   const [now, setNow] = React.useState(getHourAndMinute(new Date()));
+  // const [now, setNow] = React.useState<[Hour, number]>([7, 32]);
   const nowRef = React.useRef({ now });
-  // const [now, setNow] = React.useState<[Hour, number]>([5, 32]);
-  const lock = React.useRef({ locked: true });
   const ref = React.createRef<HTMLDivElement>();
   const stations = line.stations[index] ?? [];
   const trains = extractTrains(stations.departureTime?.[direction][day]);
@@ -151,9 +150,7 @@ export const TimeList: React.FC<{ line: Line; index: number; day: Day; direction
 
   React.useEffect(() => {
     const div = ref.current;
-    setTimeout(() => {
-      div && smoothScroll(div, 300, 0, selected * 24);
-    }, 100);
+    div && smoothScroll(div, 300, 0, selected * 24);
   }, []);
 
   React.useEffect(() => {
@@ -197,11 +194,13 @@ export const TimeList: React.FC<{ line: Line; index: number; day: Day; direction
               key={normalizedTime.join(':')}
             >
               {normalizedTime.map(v => v.toString().padStart(2, '0')).join(':')}
-              {Math.abs(d) < 100 && (
+              {Math.abs(d) < 100 ? (
                 <span style={{ color: pickColor(d) }} className={styles.diff}>
                   {d > 0 ? `+${d}` : d}
                 </span>
-              )}
+              ) : <span className={styles.diff}>
+              {d > 0 ? '>99' : '<99'}
+            </span>}
             </div>
           );
         })}

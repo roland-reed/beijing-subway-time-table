@@ -34,7 +34,7 @@ export function Station(props: {
         <div>{props.station.name}</div>
         {props.station.state && <div className={styles.state}>{STATE_MAP[props.station.state]}</div>}
       </div>
-      <div className={styles.transfers}>
+      <div className={styles.transfers} style={{ backgroundColor: props.line.color }}>
         {props.station.transfers?.map(transfer => (
           <div
             className={styles.transfer}
