@@ -21,10 +21,6 @@ const M13: Line = {
       name: '五道口',
     },
     {
-      name: '知春路',
-      transfers: ['M13'],
-    },
-    {
       name: '上地',
     },
     {
@@ -208,8 +204,8 @@ const M13: Line = {
           wednesday: weekdayDownDeparture,
           thursday: weekdayDownDeparture,
           friday: weekdayDownDeparture,
-          saturday: weekendUpDeparture,
-          sunday: weekendUpDeparture,
+          saturday: weekendDownDeparture,
+          sunday: weekendDownDeparture,
         };
 
         return {
