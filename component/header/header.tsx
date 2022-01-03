@@ -1,9 +1,10 @@
 import React from 'react';
-import { Line } from '../../shared';
+import { lineMap } from '../../data';
 import styles from './header.module.css';
 
-export function Header(props: { line: Line }): React.ReactElement {
-  const { line } = props;
+export function Header(props: { lineCode: string }): React.ReactElement {
+  const { lineCode } = props;
+  const line = lineMap[lineCode as keyof typeof lineMap];
 
   return (
     <header style={{ color: line.fontColorReverse ? '#424242' : undefined, backgroundColor: line.color }} className={styles.header}>

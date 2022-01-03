@@ -5,16 +5,17 @@ import { lineMap } from '../../data';
 import { Day, Line as LineProps } from '../../shared';
 
 interface AppProps {
-  setLine: (color: LineProps) => void;
+  lineCode: string;
+  setLine: (code: string) => void;
   day: Day;
   setDay: (day: Day) => void;
 }
 
 export const App: React.FC<AppProps> = (props) => {
-  const [line, setLine] = React.useState('M1');
+  const {lineCode: line, setLine} = props;
 
   React.useEffect(() => {
-    props.setLine(lineMap[line as keyof typeof lineMap])
+    props.setLine(line);
   }, [line])
 
   return (

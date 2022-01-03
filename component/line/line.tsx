@@ -7,6 +7,22 @@ import styles from './line.module.css';
 import { useLineUp } from '../../hook';
 import * as icon from '../icon';
 
+function getStateRestoreKey(code: string) {
+  return `STATION_RESTORE_FOR_${code}`;
+}
+
+function getRestoreStation(code: string) {
+  try {
+    const state = JSON.parse(localStorage.getItem(getStateRestoreKey(code)) ?? '{}')
+
+    if (state.selected) {
+      return state.selected;
+    }
+  } catch (e) {
+    return 0;
+  }
+}
+
 export function Line(props: { day: Day, setDay: (day: Day) => void; line: LineProps; setLine: (line: string) => void }): React.ReactElement {
   const ref = React.createRef<HTMLDivElement>();
   // const [day, setDay] = React.useState(DAY[new Date().getDay()]);
@@ -21,7 +37,7 @@ export function Line(props: { day: Day, setDay: (day: Day) => void; line: LinePr
     ref,
     lineUp: div => {
       setSelected(narrow(Math.ceil((div.scrollTop - 20) / 40)));
-      smoothScroll(div, 300, 0, narrow(Math.ceil((div.scrollTop - 20) / 40)) * 40);
+      // smoothScroll(div, 300, 0, narrow(Math.ceil((div.scrollTop - 20) / 40)) * 40);
     },
   });
 
@@ -29,10 +45,18 @@ export function Line(props: { day: Day, setDay: (day: Day) => void; line: LinePr
     lineHeightList.current[index] = width;
   }
 
-  function wrappedSetSelected(index: number) {
+  function wrappedSetSelect(index: number) {
     setSelected(index);
     ref.current && smoothScroll(ref.current, 300, 0, index * 40);
   }
+
+  // React.useEffect(() => {
+  //   localStorage.setItem(getStateRestoreKey(props.line.code), JSON.stringify({ selected }))
+  // }, [props.line.code, selected]);
+
+  React.useEffect(() => {
+    ref.current && smoothScroll(ref.current, 300, 0, selected * 40);
+  }, [ref, selected]);
 
   React.useEffect(() => {
     const wrapperHeight = ref.current?.clientHeight ?? 0;
@@ -86,7 +110,7 @@ export function Line(props: { day: Day, setDay: (day: Day) => void; line: LinePr
           {props.line.stations.map((station, index) => (
             <Station
               key={index}
-              setStation={() => wrappedSetSelected(index)}
+              setStation={() => wrappedSetSelect(index)}
               line={props.line}
               index={index}
               reportWidth={reportWidth}
