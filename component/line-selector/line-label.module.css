@@ -1,4 +1,5 @@
 .line {
-  padding: .5em 1em;
+  padding: .75em 1em;
   flex-shrink: 0;
+  font-weight: bold;
 }

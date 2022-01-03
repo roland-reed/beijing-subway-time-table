@@ -5,6 +5,7 @@ const M9: Line = {
   shortName: '9',
   code: 'M9',
   color: '#97D700',
+  fontColorReverse: true,
   stations: [
     {
       name: '国家图书馆',

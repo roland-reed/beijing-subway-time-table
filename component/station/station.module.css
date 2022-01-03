@@ -2,14 +2,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 40px;
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid #fff;
+  height: 36px;
+  margin: 4px 0;
   color: #fff;
   text-align: center;
   transition: all .3s ease;
   overflow: hidden;
   border-radius: 4px;
+  box-shadow: 0 4px 4px 4px rgba(0,0,0,.15);
 }
 
 .name {
@@ -20,6 +20,13 @@
   justify-content: center;
   height: 100%;
   flex-grow: 1;
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba(0,0,0,.5);
+}
+
+.name div {
+  
+  text-shadow: 0 0 4px rgba(0,0,0,.5);
 }
 
 .state {

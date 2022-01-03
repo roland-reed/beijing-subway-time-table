@@ -53,26 +53,32 @@ a {
 }
 
 .icon-air-port:before {
+  text-shadow: 1px 1px 4px rgba(0,0,0,.25);
   content: "\e9af";
 }
 
 .icon-warning:before {
+  text-shadow: 1px 1px 4px rgba(0,0,0,.25);
   content: "\ea07";
 }
 
 .icon-arrow-up:before {
+  text-shadow: 1px 1px 4px rgba(0,0,0,.25);
   content: "\ea3a";
 }
 
 .icon-arrow-right:before {
+  text-shadow: 1px 1px 4px rgba(0,0,0,.25);
   content: "\ea3c";
 }
 
 .icon-arrow-down:before {
+  text-shadow: 1px 1px 4px rgba(0,0,0,.25);
   content: "\ea3e";
 }
 
 .icon-arrow-left:before {
+  text-shadow: 1px 1px 4px rgba(0,0,0,.25);
   content: "\ea40";
 }
 

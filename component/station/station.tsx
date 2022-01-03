@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './station.module.css';
 import { Line, State, Station as StationProps } from '../../shared';
-import { lineMap, lines } from '../../data';
+import { lineMap } from '../../data';
 
 const STATE_MAP: Record<State, string> = {
   building: '建设中',
@@ -31,7 +31,7 @@ export function Station(props: {
   return (
     <div className={styles.station} ref={ref} onClick={() => props.setStation(props.index)}>
       <div className={styles.name} style={{ backgroundColor: props.line.color }}>
-        <div>{props.station.name}</div>
+        <div style={{color: props.line.fontColorReverse ? '#424242' : undefined}}>{props.station.name}</div>
         {props.station.state && <div className={styles.state}>{STATE_MAP[props.station.state]}</div>}
       </div>
       <div className={styles.transfers} style={{ backgroundColor: props.line.color }}>

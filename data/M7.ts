@@ -5,6 +5,7 @@ const M7: Line = {
   shortName: '7',
   code: 'M7',
   color: '#FFC56E',
+  fontColorReverse: true,
   stations: [
     {
       name: '北京西站',

@@ -1,14 +1,12 @@
 import React from 'react';
 import {
   Day,
-  DepartureMinute,
   DepartureTime,
   FullDeparture,
   Hour,
   HourDepartureTime,
   Line,
   narrowRange,
-  PartialDeparture,
   smoothScroll
 } from '../../shared';
 import styles from './time-list.module.css';
@@ -199,11 +197,12 @@ export const TimeList: React.FC<{ line: Line; index: number; day: Day; direction
                   {d > 0 ? `+${d}` : d}
                 </span>
               ) : <span className={styles.diff}>
-              {d > 0 ? '>99' : '<99'}
+              {d > 0 ? '+99' : '-99'}
             </span>}
             </div>
           );
         })}
+        {trains.length === 0 && <div className={styles.empty}>暂无数据</div>}
       </ScrollContainer>
     </div>
   );

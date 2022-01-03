@@ -5,6 +5,7 @@ const M13: Line = {
   shortName: '13',
   code: 'M13',
   color: '#F4DA40',
+  fontColorReverse: true,
   stations: [
     {
       name: '西直门',

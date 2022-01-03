@@ -1,19 +1,15 @@
 import React from 'react';
-import { Line as LineProps, smoothScroll, narrowRange, Day } from '../../shared';
+import { Line as LineProps, smoothScroll, narrowRange, Day, DAY } from '../../shared';
 import { Station } from '../station';
 import { ScrollContainer } from '../scroll-container';
 import { TimeList } from '../time-list';
 import styles from './line.module.css';
 import { useLineUp } from '../../hook';
-// import ArrowLeft from './arrow-left.svg';
-// import ArrowRight from './arrow-right.svg';
 import * as icon from '../icon';
 
-const DAY: Day[] = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-
-export function Line(props: { line: LineProps; setLine: (line: string) => void }): React.ReactElement {
+export function Line(props: { day: Day, setDay: (day: Day) => void; line: LineProps; setLine: (line: string) => void }): React.ReactElement {
   const ref = React.createRef<HTMLDivElement>();
-  const [day, setDay] = React.useState(DAY[new Date().getDay()]);
+  // const [day, setDay] = React.useState(DAY[new Date().getDay()]);
   const [paddingTop, setPaddingTop] = React.useState(0);
   const [selected, setSelected] = React.useState(0);
   const lineHeightList = React.useRef<number[]>([]);
@@ -55,7 +51,7 @@ export function Line(props: { line: LineProps; setLine: (line: string) => void }
 
   return (
     <div className={styles['line-wrapper']}>
-      <TimeList day={day} direction="up" line={props.line} index={selected} />
+      <TimeList day={props.day} direction="up" line={props.line} index={selected} />
       <div className={styles.line} onScroll={e => console.log((e.target as HTMLDivElement).scrollTop)}>
         <div className={styles.indicator} style={{ color: props.line.color }}>
           <div className={styles.direction}>
@@ -78,9 +74,10 @@ export function Line(props: { line: LineProps; setLine: (line: string) => void }
           style={{
             paddingTop,
             paddingBottom: paddingTop,
+            paddingLeft: 8,
+            paddingRight: 8
           }}
           ref={ref}
-          className={styles.stations}
           onTouchStart={onTouchStart}
           onTouchEnd={onTouchEnd}
           onTouchCancel={onTouchEnd}
@@ -116,7 +113,7 @@ export function Line(props: { line: LineProps; setLine: (line: string) => void }
           </div>
         </div>
       </div>
-      <TimeList day="monday" direction="down" line={props.line} index={selected} />
+      <TimeList day={props.day} direction="down" line={props.line} index={selected} />
     </div>
   );
 }

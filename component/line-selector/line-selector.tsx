@@ -3,7 +3,7 @@ import { lines } from '../../data';
 import { useLineUp } from '../../hook';
 import { LineLabel } from './line-label';
 import styles from './line-selector.module.css';
-import ArrowUp from './arrow-up.svg';
+import * as icon from '../icon';
 import { Line, smoothScroll } from '../../shared';
 
 interface LineSelectorProps {
@@ -95,13 +95,15 @@ export const LineSelector: React.FC<LineSelectorProps> = ({ setLine, line }) => 
         ref={ref}
       >
         <div className={styles.placeholder} style={{ width: paddingLeft }} />
-        {lines.map((line, index) => (
-          <LineLabel key={line.name} setLine={wrappedSetLine} line={line} index={index} reportWidth={reportWidth} />
-        ))}
+        <div className={styles['actual-lines']}>
+          {lines.map((line, index) => (
+            <LineLabel key={line.name} setLine={wrappedSetLine} line={line} index={index} reportWidth={reportWidth} />
+          ))}
+        </div>
         <div className={styles.placeholder} style={{ width: paddingRight }} />
       </div>
-      <div className={styles.indicator}>
-        <ArrowUp className={styles['arrow-up']} fill={line.color} />
+      <div className={styles.indicator} style={{ color: line.color }}>
+        <icon.ArrowUp />
       </div>
     </div>
   );

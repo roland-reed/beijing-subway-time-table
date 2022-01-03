@@ -21,6 +21,13 @@
 }
 
 .diff {
-  padding-left: 0.5em;
+  margin-left: .25em;
+  padding-left: .25em;
+  font-weight: bold;
+  border-left: 1px dashed #999;
+}
+
+.empty {
+  color: #ccc;
   font-weight: bold;
 }

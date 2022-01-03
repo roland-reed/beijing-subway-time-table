@@ -21,6 +21,7 @@ export const LineLabel: React.FC<LineLabelProps> = ({ line, reportWidth, index, 
       className={styles.line}
       style={{
         backgroundColor: line.color,
+        color: line.fontColorReverse ? '#424242' : undefined
       }}
       ref={ref}
       key={line.name}
