@@ -5,6 +5,7 @@ const M2: Line = {
   shortName: '2',
   code: 'M2',
   color: '#004B87',
+  loop: true,
   stations: [
     {
       name: '西直门',

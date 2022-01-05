@@ -12,6 +12,7 @@ import {
 import styles from './time-list.module.css';
 import { ScrollContainer } from '../scroll-container';
 import { useLineUp } from '../../hook';
+import { Tip } from './tip';
 
 function getHourAndMinute(date: Date): [Hour, number] {
   const hour = date.getHours();
@@ -50,20 +51,6 @@ function pickColor(diff: number): string | undefined {
   return undefined;
 }
 
-function findNext(timeList: [number, number][], now: [number, number]): number {
-  let index = 0;
-
-  timeList.some(time => {
-    if (passed(time, now)) {
-      index++;
-      return false;
-    }
-    return true;
-  });
-
-  return index;
-}
-
 function extractTrains(table?: HourDepartureTime): DepartureTime[] {
   if (table === undefined) {
     return [];
@@ -74,10 +61,6 @@ function extractTrains(table?: HourDepartureTime): DepartureTime[] {
       (result, [hour, minutes]) => result.concat(minutes.map(minute => [Number(hour) as Hour, minute])),
       [] as DepartureTime[]
     );
-}
-
-function getIndexByName(line: Line, name: string): number {
-  return line.stations.findIndex(station => station.name === name);
 }
 
 function normalizeTime(time: DepartureTime): [Hour, FullDeparture] {
@@ -106,11 +89,20 @@ function findNextIndex(timeList: DepartureTime[], now: [Hour, FullDeparture]): n
   return index;
 }
 
-export const TimeList: React.FC<{ line: Line; index: number; day: Day; direction: 'up' | 'down' }> = ({
+interface TimeListProps {
+  line: Line;
+  index: number;
+  day: Day;
+  direction: 'up' | 'down';
+  terminus?: boolean;
+}
+
+export const TimeList: React.FC<TimeListProps> = ({
   line,
   index,
   direction,
   day,
+  terminus = false,
 }) => {
   const [now, setNow] = React.useState(getHourAndMinute(new Date()));
   // const [now, setNow] = React.useState<[Hour, number]>([7, 32]);
@@ -164,6 +156,8 @@ export const TimeList: React.FC<{ line: Line; index: number; day: Day; direction
     return () => clearInterval(intervalId);
   }, []);
 
+  console.log((!terminus || line.loop === true))
+
   return (
     <div className={styles.container}>
       <ScrollContainer
@@ -178,7 +172,7 @@ export const TimeList: React.FC<{ line: Line; index: number; day: Day; direction
         onTouchCancel={onTouchEnd}
         onScroll={onScroll}
       >
-        {trains.map((time, index) => {
+        {(!terminus || line.loop === true) && trains.map((time, index) => {
           const normalizedTime = normalizeTime(time);
           const d = diff(normalizedTime, now);
 
@@ -197,12 +191,12 @@ export const TimeList: React.FC<{ line: Line; index: number; day: Day; direction
                   {d > 0 ? `+${d}` : d}
                 </span>
               ) : <span className={styles.diff}>
-              {d > 0 ? '+99' : '-99'}
-            </span>}
+                {d > 0 ? '+99' : '-99'}
+              </span>}
             </div>
           );
         })}
-        {trains.length === 0 && <div className={styles.empty}>暂无数据</div>}
+        <Tip direction={direction} terminus={terminus} loop={line.loop ?? false} />
       </ScrollContainer>
     </div>
   );

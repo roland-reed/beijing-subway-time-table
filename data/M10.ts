@@ -5,6 +5,7 @@ const M10: Line = {
   shortName: '10',
   code: 'M10',
   color: '#0092BC',
+  loop: true,
   stations: [
     {
       name: '巴沟',

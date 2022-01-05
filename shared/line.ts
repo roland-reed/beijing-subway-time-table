@@ -5,6 +5,7 @@ export interface Line {
   name: string;
   shortName: string;
   color: string;
+  loop?: boolean;
   fontColorReverse?: boolean;
   stations: Station[];
 }
