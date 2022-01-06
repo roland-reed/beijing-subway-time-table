@@ -75,7 +75,7 @@ export function Line(props: { day: Day, setDay: (day: Day) => void; line: LinePr
 
   return (
     <div className={styles['line-wrapper']}>
-      <TimeList terminus={selected === 0} day={props.day} direction="up" line={props.line} index={selected} />
+      <TimeList terminus={selected === props.line.stations.length - 1} day={props.day} direction="up" line={props.line} index={selected} />
       <div className={styles.line} onScroll={e => console.log((e.target as HTMLDivElement).scrollTop)}>
         <div className={styles.indicator} style={{ color: props.line.color }}>
           <div className={styles.direction}>
@@ -137,7 +137,7 @@ export function Line(props: { day: Day, setDay: (day: Day) => void; line: LinePr
           </div>
         </div>
       </div>
-      <TimeList terminus={selected === props.line.stations.length - 1} day={props.day} direction="down" line={props.line} index={selected} />
+      <TimeList terminus={selected === 0} day={props.day} direction="down" line={props.line} index={selected} />
     </div>
   );
 }
