@@ -156,8 +156,6 @@ export const TimeList: React.FC<TimeListProps> = ({
     return () => clearInterval(intervalId);
   }, []);
 
-  console.log((!terminus || line.loop === true))
-
   return (
     <div className={styles.container}>
       <ScrollContainer
@@ -196,7 +194,7 @@ export const TimeList: React.FC<TimeListProps> = ({
             </div>
           );
         })}
-        <Tip direction={direction} terminus={terminus} loop={line.loop ?? false} />
+        {trains.length === 0 && <Tip direction={direction} terminus={terminus} loop={line.loop ?? false} />}
       </ScrollContainer>
     </div>
   );
