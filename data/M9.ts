@@ -13,14 +13,14 @@ const M9: Line = {
     },
     {
       name: '白石桥南',
-      transfers: ['M6']
+      transfers: ['M6'],
     },
     {
       name: '白堆子',
     },
     {
       name: '军事博物馆',
-      transfers: ['M1']
+      transfers: ['M1'],
     },
     {
       name: '北京西站',
@@ -35,14 +35,14 @@ const M9: Line = {
     },
     {
       name: '七里庄',
-      transfers: ['M14']
+      transfers: ['M14'],
     },
     {
       name: '丰台东大街',
     },
     {
       name: '丰台南路',
-      transfers: ['M16']
+      transfers: ['M16'],
     },
     {
       name: '科怡路',

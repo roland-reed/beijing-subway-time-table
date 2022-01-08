@@ -29,7 +29,7 @@ export function smoothScroll(element: HTMLElement, duration: number, x: number, 
     const startLeft = element.scrollLeft;
     const startTop = element.scrollTop;
 
-    animate(duration, progress => {
+    animate(duration, (progress) => {
       const left = (x - startLeft) * progress + startLeft;
       const top = (y - startTop) * progress + startTop;
       element.scrollTo(left, top);

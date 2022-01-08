@@ -10,7 +10,7 @@ const LINE_RESTORE_KEY = 'LINE_RESTORE_KEY';
 
 function restore() {
   try {
-    return JSON.parse(localStorage.getItem(LINE_RESTORE_KEY) ?? '{}')
+    return JSON.parse(localStorage.getItem(LINE_RESTORE_KEY) ?? '{}');
   } catch (e) {
     return {};
   }
@@ -29,8 +29,8 @@ const Home: NextPage = () => {
   }, []);
 
   React.useEffect(() => {
-    localStorage.setItem(LINE_RESTORE_KEY, JSON.stringify({ line }))
-  }, [line, day])
+    localStorage.setItem(LINE_RESTORE_KEY, JSON.stringify({ line }));
+  }, [line, day]);
 
   return (
     <>
@@ -40,7 +40,7 @@ const Home: NextPage = () => {
         <App day={day} setDay={setDay} lineCode={line} setLine={setLine} />
       </div>
     </>
-  )
+  );
 };
 
 export default Home;

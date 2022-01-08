@@ -3,8 +3,8 @@ body {
   padding: 0;
   font-size: 12px;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
 }
 
 a {
@@ -17,30 +17,26 @@ a {
 }
 
 @font-face {
-  font-family: "display";
-  src: url("/digital-7-mono.woff") format("woff");
-  src: url("/digital-7-mono.ttf") format("truetype"),
-    url("/digital-7-mono.eot") format("embedded-opentype"),
-    url("/digital-7-mono.otf") format("opentype");
+  font-family: 'display';
+  src: url('/digital-7-mono.woff') format('woff');
+  src: url('/digital-7-mono.ttf') format('truetype'), url('/digital-7-mono.eot') format('embedded-opentype'),
+    url('/digital-7-mono.otf') format('opentype');
 }
 
 @font-face {
-  font-family: "icomoon";
-  src: url("/icomoon.eot?3kwwpv");
-  src: url("/icomoon.eot?3kwwpv#iefix") format("embedded-opentype"),
-    url("/icomoon.ttf?3kwwpv") format("truetype"),
-    url("/icomoon.woff?3kwwpv") format("woff"),
-    url("/icomoon.svg?3kwwpv#icomoon") format("svg");
+  font-family: 'icomoon';
+  src: url('/icomoon.eot?3kwwpv');
+  src: url('/icomoon.eot?3kwwpv#iefix') format('embedded-opentype'), url('/icomoon.ttf?3kwwpv') format('truetype'),
+    url('/icomoon.woff?3kwwpv') format('woff'), url('/icomoon.svg?3kwwpv#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="icon-"],
-[class*=" icon-"] {
-
+[class^='icon-'],
+[class*=' icon-'] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "icomoon" !important;
+  font-family: 'icomoon' !important;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -53,32 +49,31 @@ a {
 }
 
 .icon-air-port:before {
-  text-shadow: 1px 1px 4px rgba(0,0,0,.25);
-  content: "\e9af";
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+  content: '\e9af';
 }
 
 .icon-warning:before {
-  text-shadow: 1px 1px 4px rgba(0,0,0,.25);
-  content: "\ea07";
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+  content: '\ea07';
 }
 
 .icon-arrow-up:before {
-  text-shadow: 1px 1px 4px rgba(0,0,0,.25);
-  content: "\ea3a";
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+  content: '\ea3a';
 }
 
 .icon-arrow-right:before {
-  text-shadow: 1px 1px 4px rgba(0,0,0,.25);
-  content: "\ea3c";
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+  content: '\ea3c';
 }
 
 .icon-arrow-down:before {
-  text-shadow: 1px 1px 4px rgba(0,0,0,.25);
-  content: "\ea3e";
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+  content: '\ea3e';
 }
 
 .icon-arrow-left:before {
-  text-shadow: 1px 1px 4px rgba(0,0,0,.25);
-  content: "\ea40";
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+  content: '\ea40';
 }
-

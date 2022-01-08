@@ -38,7 +38,7 @@ export type DepartureTime = [Hour, DepartureMinute];
 
 export type HourDepartureTime = {
   [hour in Hour]?: DepartureMinute[];
-}
+};
 
 export type WeekDepartureTime = {
   [workday in Day]: HourDepartureTime;

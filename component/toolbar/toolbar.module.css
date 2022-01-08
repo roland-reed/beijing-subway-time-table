@@ -1,18 +1,18 @@
 .toolbar {
-  padding: 1em .5em 0 .5em;
+  padding: 1em 0.5em 0 0.5em;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .time {
-  font-family: "display";
+  font-family: 'display';
   font-size: 2em;
 }
 
 .select {
   border: none;
-  padding: .25em;
+  padding: 0.25em;
   outline: none;
   border: none;
   border-radius: 4px;
@@ -20,5 +20,5 @@
   font-size: 1.25rem;
   cursor: pointer;
   line-height: 1.1;
-  background-color: rgba(0,0,0,.15);
+  background-color: rgba(0, 0, 0, 0.15);
 }

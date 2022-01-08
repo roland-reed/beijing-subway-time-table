@@ -17,4 +17,4 @@ export const Tip: React.FC<TipProps> = ({ terminus, loop, direction }) => {
     return <div className={styles.empty}>{direction === 'up' ? '上行' : '下行'}终点</div>;
   }
   return <div className={styles.empty}>暂无数据</div>;
-}
+};

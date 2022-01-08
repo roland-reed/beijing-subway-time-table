@@ -12,11 +12,11 @@ interface AppProps {
 }
 
 export const App: React.FC<AppProps> = (props) => {
-  const {lineCode: line, setLine} = props;
+  const { lineCode: line, setLine } = props;
 
   React.useEffect(() => {
     props.setLine(line);
-  }, [line])
+  }, [line]);
 
   return (
     <div>

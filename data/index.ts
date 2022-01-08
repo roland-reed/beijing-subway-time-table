@@ -49,7 +49,7 @@ export const lines = [
   M27,
   M34,
   M35,
-  YZT1
+  YZT1,
 ] as const;
 
 export const lineMap = {
@@ -77,5 +77,5 @@ export const lineMap = {
   M27,
   M34,
   M35,
-  YZT1
+  YZT1,
 } as const;

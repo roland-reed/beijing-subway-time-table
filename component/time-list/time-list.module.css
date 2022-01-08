@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: row;
-  font-family: "display";
+  font-family: 'display';
   font-size: 1.5em;
   overflow: scroll;
   flex-shrink: 0;
@@ -21,8 +21,8 @@
 }
 
 .diff {
-  margin-left: .25em;
-  padding-left: .25em;
+  margin-left: 0.25em;
+  padding-left: 0.25em;
   font-weight: bold;
   border-left: 1px dashed #999;
 }

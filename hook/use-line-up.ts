@@ -28,11 +28,11 @@ export function useLineUp(options: LineUpOptions) {
       context.current.timeoutId = lazyLineUp();
     }
   };
-  const onTouchStart:  React.UIEventHandler<HTMLDivElement> = () => {
+  const onTouchStart: React.UIEventHandler<HTMLDivElement> = () => {
     context.current.touching = true;
     const { timeoutId } = context.current;
     timeoutId && clearTimeout(timeoutId);
-  }
+  };
   const onTouchEnd: React.UIEventHandler<HTMLDivElement> = () => {
     context.current.timeoutId = lazyLineUp();
     context.current.touching = false;
@@ -40,7 +40,7 @@ export function useLineUp(options: LineUpOptions) {
 
   // React.useEffect(() => {
   //   const { timeoutId, touching } = context.current;
-    
+
   //   timeoutId && clearTimeout(timeoutId);
   //   context.current.timeoutId = null;
 
@@ -52,6 +52,6 @@ export function useLineUp(options: LineUpOptions) {
   return {
     onTouchStart,
     onTouchEnd,
-    onScroll
-  }
+    onScroll,
+  };
 }

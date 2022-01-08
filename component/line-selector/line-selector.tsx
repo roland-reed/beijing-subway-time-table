@@ -52,7 +52,7 @@ export const LineSelector: React.FC<LineSelectorProps> = ({ setLine, line }) => 
   }
 
   function scrollToLine(code: string) {
-    const index = lines.findIndex(line => line.code === code);
+    const index = lines.findIndex((line) => line.code === code);
 
     ref.current && smoothScroll(ref.current, 300, computeOffset(index), 0);
   }
@@ -82,7 +82,7 @@ export const LineSelector: React.FC<LineSelectorProps> = ({ setLine, line }) => 
   });
   React.useEffect(() => {
     scrollToLine(line.code);
-  }, [line.code])
+  }, [line.code]);
 
   return (
     <div className={styles['lines-wrapper']}>

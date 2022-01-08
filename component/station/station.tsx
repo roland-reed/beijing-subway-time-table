@@ -31,16 +31,16 @@ export function Station(props: {
   return (
     <div className={styles.station} ref={ref} onClick={() => props.setStation(props.index)}>
       <div className={styles.name} style={{ backgroundColor: props.line.color }}>
-        <div style={{color: props.line.fontColorReverse ? '#424242' : undefined}}>{props.station.name}</div>
+        <div style={{ color: props.line.fontColorReverse ? '#424242' : undefined }}>{props.station.name}</div>
         {props.station.state && <div className={styles.state}>{STATE_MAP[props.station.state]}</div>}
       </div>
       <div className={styles.transfers} style={{ backgroundColor: props.line.color }}>
-        {props.station.transfers?.map(transfer => (
+        {props.station.transfers?.map((transfer) => (
           <div
             className={styles.transfer}
             style={{ backgroundColor: lineMap[transfer as keyof typeof lineMap].color }}
             key={transfer}
-            onClick={e => {
+            onClick={(e) => {
               e.stopPropagation();
               props.setLine(transfer);
             }}

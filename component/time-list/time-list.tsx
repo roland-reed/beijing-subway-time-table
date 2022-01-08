@@ -7,7 +7,7 @@ import {
   HourDepartureTime,
   Line,
   narrowRange,
-  smoothScroll
+  smoothScroll,
 } from '../../shared';
 import styles from './time-list.module.css';
 import { ScrollContainer } from '../scroll-container';
@@ -58,8 +58,8 @@ function extractTrains(table?: HourDepartureTime): DepartureTime[] {
   return Object.entries(table)
     .sort((a, b) => Number(a[0]) - Number(b[0]))
     .reduce(
-      (result, [hour, minutes]) => result.concat(minutes.map(minute => [Number(hour) as Hour, minute])),
-      [] as DepartureTime[]
+      (result, [hour, minutes]) => result.concat(minutes.map((minute) => [Number(hour) as Hour, minute])),
+      [] as DepartureTime[],
     );
 }
 
@@ -72,13 +72,13 @@ function normalizeTime(time: DepartureTime): [Hour, FullDeparture] {
 
   const fragments = minute.split('->');
 
-  return [hour, Number(fragments.find(fragment => !Number.isNaN(parseInt(fragment)))) as FullDeparture];
+  return [hour, Number(fragments.find((fragment) => !Number.isNaN(parseInt(fragment)))) as FullDeparture];
 }
 
 function findNextIndex(timeList: DepartureTime[], now: [Hour, FullDeparture]): number {
   let index = 0;
 
-  timeList.some(time => {
+  timeList.some((time) => {
     if (diff(normalizeTime(time), now) < 0) {
       index++;
       return false;
@@ -97,13 +97,7 @@ interface TimeListProps {
   terminus?: boolean;
 }
 
-export const TimeList: React.FC<TimeListProps> = ({
-  line,
-  index,
-  direction,
-  day,
-  terminus = false,
-}) => {
+export const TimeList: React.FC<TimeListProps> = ({ line, index, direction, day, terminus = false }) => {
   const [now, setNow] = React.useState(getHourAndMinute(new Date()));
   // const [now, setNow] = React.useState<[Hour, number]>([7, 32]);
   const nowRef = React.useRef({ now });
@@ -115,7 +109,7 @@ export const TimeList: React.FC<TimeListProps> = ({
   const narrow = React.useCallback(narrowRange(0, trains.length - 1), [trains.length - 1, ref]);
   const { onScroll, onTouchEnd, onTouchStart } = useLineUp({
     ref,
-    lineUp: div => {
+    lineUp: (div) => {
       setSelected(narrow(Math.ceil((div.scrollTop - 12) / 24)));
     },
   });
@@ -170,30 +164,31 @@ export const TimeList: React.FC<TimeListProps> = ({
         onTouchCancel={onTouchEnd}
         onScroll={onScroll}
       >
-        {(!terminus || line.loop === true) && trains.map((time, index) => {
-          const normalizedTime = normalizeTime(time);
-          const d = diff(normalizedTime, now);
+        {(!terminus || line.loop === true) &&
+          trains.map((time, index) => {
+            const normalizedTime = normalizeTime(time);
+            const d = diff(normalizedTime, now);
 
-          return (
-            <div
-              className={styles['departure-time']}
-              style={{
-                color: passed(normalizedTime, now) ? '#ccc' : undefined,
-              }}
-              onClick={() => setSelected(index)}
-              key={normalizedTime.join(':')}
-            >
-              {normalizedTime.map(v => v.toString().padStart(2, '0')).join(':')}
-              {Math.abs(d) < 100 ? (
-                <span style={{ color: pickColor(d) }} className={styles.diff}>
-                  {d > 0 ? `+${d}` : d}
-                </span>
-              ) : <span className={styles.diff}>
-                {d > 0 ? '+99' : '-99'}
-              </span>}
-            </div>
-          );
-        })}
+            return (
+              <div
+                className={styles['departure-time']}
+                style={{
+                  color: passed(normalizedTime, now) ? '#ccc' : undefined,
+                }}
+                onClick={() => setSelected(index)}
+                key={normalizedTime.join(':')}
+              >
+                {normalizedTime.map((v) => v.toString().padStart(2, '0')).join(':')}
+                {Math.abs(d) < 100 ? (
+                  <span style={{ color: pickColor(d) }} className={styles.diff}>
+                    {d > 0 ? `+${d}` : d}
+                  </span>
+                ) : (
+                  <span className={styles.diff}>{d > 0 ? '+99' : '-99'}</span>
+                )}
+              </div>
+            );
+          })}
         {trains.length === 0 && <Tip direction={direction} terminus={terminus} loop={line.loop ?? false} />}
       </ScrollContainer>
     </div>

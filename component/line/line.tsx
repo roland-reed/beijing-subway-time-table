@@ -13,7 +13,7 @@ function getStateRestoreKey(code: string) {
 
 function getRestoreStation(code: string) {
   try {
-    const state = JSON.parse(localStorage.getItem(getStateRestoreKey(code)) ?? '{}')
+    const state = JSON.parse(localStorage.getItem(getStateRestoreKey(code)) ?? '{}');
 
     if (state.selected) {
       return state.selected;
@@ -23,7 +23,12 @@ function getRestoreStation(code: string) {
   }
 }
 
-export function Line(props: { day: Day, setDay: (day: Day) => void; line: LineProps; setLine: (line: string) => void }): React.ReactElement {
+export function Line(props: {
+  day: Day;
+  setDay: (day: Day) => void;
+  line: LineProps;
+  setLine: (line: string) => void;
+}): React.ReactElement {
   const ref = React.createRef<HTMLDivElement>();
   // const [day, setDay] = React.useState(DAY[new Date().getDay()]);
   const [paddingTop, setPaddingTop] = React.useState(0);
@@ -35,7 +40,7 @@ export function Line(props: { day: Day, setDay: (day: Day) => void; line: LinePr
   ]);
   const { onScroll, onTouchEnd, onTouchStart } = useLineUp({
     ref,
-    lineUp: div => {
+    lineUp: (div) => {
       setSelected(narrow(Math.ceil((div.scrollTop - 20) / 40)));
       // smoothScroll(div, 300, 0, narrow(Math.ceil((div.scrollTop - 20) / 40)) * 40);
     },
@@ -75,8 +80,14 @@ export function Line(props: { day: Day, setDay: (day: Day) => void; line: LinePr
 
   return (
     <div className={styles['line-wrapper']}>
-      <TimeList terminus={selected === props.line.stations.length - 1} day={props.day} direction="up" line={props.line} index={selected} />
-      <div className={styles.line} onScroll={e => console.log((e.target as HTMLDivElement).scrollTop)}>
+      <TimeList
+        terminus={selected === props.line.stations.length - 1}
+        day={props.day}
+        direction="up"
+        line={props.line}
+        index={selected}
+      />
+      <div className={styles.line} onScroll={(e) => console.log((e.target as HTMLDivElement).scrollTop)}>
         <div className={styles.indicator} style={{ color: props.line.color }}>
           <div className={styles.direction}>
             <span>&#8203;</span>
@@ -99,7 +110,7 @@ export function Line(props: { day: Day, setDay: (day: Day) => void; line: LinePr
             paddingTop,
             paddingBottom: paddingTop,
             paddingLeft: 8,
-            paddingRight: 8
+            paddingRight: 8,
           }}
           ref={ref}
           onTouchStart={onTouchStart}
