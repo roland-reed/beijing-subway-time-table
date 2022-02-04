@@ -45,6 +45,6 @@ export type WeekDepartureTime = {
 };
 
 export interface DepartureTimeTable {
-  up: WeekDepartureTime;
-  down: WeekDepartureTime;
+  up?: WeekDepartureTime;
+  down?: WeekDepartureTime;
 }

@@ -109,7 +109,7 @@ const M14: Line = {
       name: '阜通',
     },
     {
-      name: '望京西',
+      name: '望京',
       transfers: ['M15'],
     },
     {

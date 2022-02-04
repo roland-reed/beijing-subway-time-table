@@ -1,4 +1,4 @@
-import { Line, DepartureMinute, HourDepartureTime, WeekDepartureTime } from '../shared';
+import { Line, HourDepartureTime, WeekDepartureTime } from '../shared';
 
 const M1: Line = {
   name: '1 号线 | 八通线',
@@ -87,7 +87,6 @@ const M1: Line = {
 
         return {
           up: upDepartureTime,
-          down: upDepartureTime,
         };
       },
     },

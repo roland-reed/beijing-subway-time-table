@@ -1,43 +1,86 @@
 import React from 'react';
 import type { NextPage } from 'next';
+import Head from 'next/head';
 import { Header } from '../component/header';
 import { App } from '../component/app';
-import { lineMap } from '../data';
 import { Toolbar } from '../component/toolbar';
-import { getDay } from '../shared';
+import { DAY, Day } from '../shared';
+import { reducer } from '../shared/reducer';
 
 const LINE_RESTORE_KEY = 'LINE_RESTORE_KEY';
 
 function restore() {
   try {
-    return JSON.parse(localStorage.getItem(LINE_RESTORE_KEY) ?? '{}');
+    return {
+      ...JSON.parse(localStorage.getItem(LINE_RESTORE_KEY) ?? '{"line":"M1","station":0}'),
+      day: DAY[new Date().getDay()],
+    };
   } catch (e) {
-    return {};
+    return {
+      line: 'M1',
+      station: 0,
+      day: DAY[new Date().getDay()],
+    };
   }
 }
 
 const Home: NextPage = () => {
-  const [line, setLine] = React.useState(lineMap.M1.code);
-  const [day, setDay] = React.useState(getDay());
+  const [show, setShow] = React.useState(false);
+  const [state, dispatch] = React.useReducer(reducer, restore());
 
-  React.useEffect(() => {
-    const state = restore();
+  const setLine = React.useCallback(function setLine(line: string): void {
+    dispatch({
+      type: 'update',
+      payload: {
+        line,
+      },
+    });
+  }, []);
 
-    if (state.line) {
-      setLine(state.line);
-    }
+  const setDay = React.useCallback(function setDay(day: Day): void {
+    dispatch({
+      type: 'update',
+      payload: {
+        day,
+      },
+    });
+  }, []);
+
+  const setSelected = React.useCallback(function setSelected(station: number): void {
+    dispatch({
+      type: 'update',
+      payload: {
+        station,
+      },
+    });
   }, []);
 
   React.useEffect(() => {
-    localStorage.setItem(LINE_RESTORE_KEY, JSON.stringify({ line }));
-  }, [line, day]);
+    localStorage.setItem(LINE_RESTORE_KEY, JSON.stringify({ ...state, day: undefined }));
+  }, [state]);
+
+  React.useEffect(() => {
+    setShow(true);
+  }, []);
 
   return (
     <>
-      <Header lineCode={line} />
-      <Toolbar day={day} setDay={setDay} />
+      <Head>
+        <title>北京地铁时刻表</title>
+      </Head>
+      {show && <Header lineCode={state.line} />}
+      {show && <Toolbar day={state.day} setDay={setDay} />}
       <div>
-        <App day={day} setDay={setDay} lineCode={line} setLine={setLine} />
+        {show && (
+          <App
+            day={state.day}
+            setDay={setDay}
+            selected={state.station}
+            setSelected={setSelected}
+            lineCode={state.line}
+            setLine={setLine}
+          />
+        )}
       </div>
     </>
   );

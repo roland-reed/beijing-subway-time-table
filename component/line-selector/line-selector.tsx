@@ -8,10 +8,11 @@ import { Line, smoothScroll } from '../../shared';
 
 interface LineSelectorProps {
   setLine: (code: string) => void;
+  setSelected(station: number): void;
   line: Line;
 }
 
-export const LineSelector: React.FC<LineSelectorProps> = ({ setLine, line }) => {
+export const LineSelector: React.FC<LineSelectorProps> = ({ setLine, line, setSelected }) => {
   const ref = React.createRef<HTMLDivElement>();
   const [paddingLeft, setPaddingLeft] = React.useState(1000);
   const [paddingRight, setPaddingRight] = React.useState(0);
@@ -51,11 +52,14 @@ export const LineSelector: React.FC<LineSelectorProps> = ({ setLine, line }) => 
     lineWidthList.current[index] = width;
   }
 
-  function scrollToLine(code: string) {
-    const index = lines.findIndex((line) => line.code === code);
+  const scrollToLine = React.useCallback(
+    function scrollToLine(code: string) {
+      const index = lines.findIndex((line) => line.code === code);
 
-    ref.current && smoothScroll(ref.current, 300, computeOffset(index), 0);
-  }
+      ref.current && smoothScroll(ref.current, 300, computeOffset(index), 0);
+    },
+    [ref],
+  );
 
   function wrappedSetLine(code: string) {
     setLine(code);
@@ -82,7 +86,7 @@ export const LineSelector: React.FC<LineSelectorProps> = ({ setLine, line }) => 
   });
   React.useEffect(() => {
     scrollToLine(line.code);
-  }, [line.code]);
+  }, [line.code, scrollToLine]);
 
   return (
     <div className={styles['lines-wrapper']}>
@@ -97,7 +101,14 @@ export const LineSelector: React.FC<LineSelectorProps> = ({ setLine, line }) => 
         <div className={styles.placeholder} style={{ width: paddingLeft }} />
         <div className={styles['actual-lines']}>
           {lines.map((line, index) => (
-            <LineLabel key={line.name} setLine={wrappedSetLine} line={line} index={index} reportWidth={reportWidth} />
+            <LineLabel
+              key={line.name}
+              setLine={wrappedSetLine}
+              line={line}
+              setSelected={setSelected}
+              index={index}
+              reportWidth={reportWidth}
+            />
           ))}
         </div>
         <div className={styles.placeholder} style={{ width: paddingRight }} />

@@ -103,10 +103,10 @@ export const TimeList: React.FC<TimeListProps> = ({ line, index, direction, day,
   const nowRef = React.useRef({ now });
   const ref = React.createRef<HTMLDivElement>();
   const stations = line.stations[index] ?? [];
-  const trains = extractTrains(stations.departureTime?.[direction][day]);
+  const trains = extractTrains(stations.departureTime?.[direction]?.[day]);
   const [selected, setSelected] = React.useState(findNextIndex(trains, now));
   const [paddingTop, setPaddingTop] = React.useState(0);
-  const narrow = React.useCallback(narrowRange(0, trains.length - 1), [trains.length - 1, ref]);
+  const narrow = React.useCallback((value) => narrowRange(0, trains.length - 1)(value), [trains.length]);
   const { onScroll, onTouchEnd, onTouchStart } = useLineUp({
     ref,
     lineUp: (div) => {
@@ -122,20 +122,20 @@ export const TimeList: React.FC<TimeListProps> = ({ line, index, direction, day,
 
       setPaddingTop(paddingTop);
     }
-  }, []);
+  }, [ref]);
 
   React.useEffect(() => {
     setSelected(findNextIndex(trains, now));
-  }, [line, index, day, now]);
+  }, [line, index, day, now, setSelected, trains]);
 
   React.useEffect(() => {
     ref.current && smoothScroll(ref.current, 300, 0, selected * 24);
-  }, [selected]);
+  }, [selected, ref]);
 
   React.useEffect(() => {
     const div = ref.current;
     div && smoothScroll(div, 300, 0, selected * 24);
-  }, []);
+  }, [ref, selected]);
 
   React.useEffect(() => {
     const intervalId = setInterval(() => {

@@ -1,20 +1,23 @@
 import fs from 'fs';
 import timeTable from './time-table.mjs';
 
-const [upWeekday, downWeekday, upWeekend, downWeekend] = timeTable.trim()
+const [upWeekday, downWeekday, upWeekend, downWeekend] = timeTable
+  .trim()
   .split('\n\n')
-  .map(section => section.split('\n')
-    .filter(line => !line.startsWith('//'))
-    .join('\n')
+  .map((section) =>
+    section
+      .split('\n')
+      .filter((line) => !line.startsWith('//'))
+      .join('\n'),
   );
 
 function generate(raw) {
-  const lines = raw.split('\n').filter(line => line.trim().length !== 0);
+  const lines = raw.split('\n').filter((line) => line.trim().length !== 0);
   const table = {};
 
   for (const line of lines) {
     const [hour, ...minute] = line.split(' ');
-    const normalized = minute.map(m => Number(m));
+    const normalized = minute.map((m) => Number(m));
     if (hour < 0 || hour > 24) {
       throw new Error(`Invalid hour: ${hour}`);
     }
@@ -26,7 +29,7 @@ function generate(raw) {
         throw new Error(`Bad minute: hour: ${hour}, minute: ${normalized[i]}`);
       }
     }
-    table[Number(hour)] = minute.map(m => Number(m));
+    table[Number(hour)] = minute.map((m) => Number(m));
   }
   return JSON.stringify(table, null, 2);
 }
@@ -60,7 +63,7 @@ get departureTime() {
     up: upDepartureTime,
     down: downDepartureTime,
   };
-},`
+},`;
 
 function main() {
   const upWeekdayTable = generate(upWeekday);
@@ -68,7 +71,14 @@ function main() {
   const upWeekendTable = generate(upWeekend);
   const downWeekendTable = generate(downWeekend);
 
-  fs.writeFileSync('./temp.js', template.replace('$UP_WEEKDAY$', upWeekdayTable).replace('$DOWN_WEEKDAY$', downWeekdayTable).replace('$UP_WEEKEND$', upWeekendTable).replace('$DOWN_WEEKEND$', downWeekendTable));
+  fs.writeFileSync(
+    './temp.js',
+    template
+      .replace('$UP_WEEKDAY$', upWeekdayTable)
+      .replace('$DOWN_WEEKDAY$', downWeekdayTable)
+      .replace('$UP_WEEKEND$', upWeekendTable)
+      .replace('$DOWN_WEEKEND$', downWeekendTable),
+  );
 }
 
 main();

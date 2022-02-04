@@ -7,9 +7,10 @@ interface LineLabelProps {
   index: number;
   reportWidth: (width: number, index: number) => void;
   setLine(line: string): void;
+  setSelected(station: number): void;
 }
 
-export const LineLabel: React.FC<LineLabelProps> = ({ line, reportWidth, index, setLine }) => {
+export const LineLabel: React.FC<LineLabelProps> = ({ line, reportWidth, index, setLine, setSelected }) => {
   const ref = React.createRef<HTMLDivElement>();
 
   React.useEffect(() => {
@@ -25,7 +26,10 @@ export const LineLabel: React.FC<LineLabelProps> = ({ line, reportWidth, index, 
       }}
       ref={ref}
       key={line.name}
-      onClick={() => setLine(line.code)}
+      onClick={() => {
+        setLine(line.code);
+        setSelected(0);
+      }}
     >
       {line.name}
     </div>

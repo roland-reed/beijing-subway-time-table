@@ -18,15 +18,16 @@ export function Station(props: {
   setStation: (index: number) => void;
   setLine: (line: string) => void;
 }): React.ReactElement {
+  const { index, reportWidth } = props;
   const ref = React.createRef<HTMLDivElement>();
 
   React.useEffect(() => {
     const height = ref.current?.getBoundingClientRect().height ?? 0;
 
     if (height) {
-      props.reportWidth(height, props.index);
+      reportWidth(height, index);
     }
-  }, []);
+  }, [reportWidth, index, ref]);
 
   return (
     <div className={styles.station} ref={ref} onClick={() => props.setStation(props.index)}>
@@ -38,11 +39,18 @@ export function Station(props: {
         {props.station.transfers?.map((transfer) => (
           <div
             className={styles.transfer}
-            style={{ backgroundColor: lineMap[transfer as keyof typeof lineMap].color }}
+            style={{
+              backgroundColor: lineMap[transfer as keyof typeof lineMap].color,
+              color: lineMap[transfer as keyof typeof lineMap].fontColorReverse ? '#424242' : undefined,
+            }}
             key={transfer}
             onClick={(e) => {
               e.stopPropagation();
               props.setLine(transfer);
+              const stationIndex = lineMap[transfer as keyof typeof lineMap].stations.findIndex(
+                (s) => s.name === props.station.name,
+              );
+              props.setStation(stationIndex);
             }}
           >
             {lineMap[transfer as keyof typeof lineMap].shortName}
