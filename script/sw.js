@@ -43,7 +43,7 @@ self.addEventListener('fetch', (event) => {
   if (event.request.url.startsWith(self.location.origin)) {
     event.respondWith(
       caches.match(event.request).then((cachedResponse) => {
-        if (event.request.url === '/') {
+        if (event.request.mode === 'navigate') {
           caches.open(RUNTIME).then((cache) => {
             fetch(event.request).then((response) => {
               cache.put(event.request, response);
