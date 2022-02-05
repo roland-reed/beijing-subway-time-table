@@ -19,6 +19,7 @@ export function Line(props: {
   const ref = React.createRef<HTMLDivElement>();
   const [paddingTop, setPaddingTop] = React.useState(0);
   const lineHeightList = React.useRef<number[]>([]);
+  const [windowHeight, setWindowHeight] = React.useState(window.innerHeight);
   const narrow = React.useCallback(
     (value) => narrowRange(0, props.line.stations.length - 1)(value),
     [props.line.stations.length],
@@ -53,8 +54,20 @@ export function Line(props: {
     }
   }, [ref]);
 
+  React.useEffect(() => {
+    function onResize() {
+      setWindowHeight(window.innerHeight);
+    }
+
+    window.addEventListener('resize', onResize);
+
+    return () => {
+      window.removeEventListener('resize', onResize);
+    }
+  }, []);
+
   return (
-    <div className={styles['line-wrapper']}>
+    <div className={styles['line-wrapper']} style={{ height: window.innerHeight - 180 }}>
       <TimeList
         terminus={selected === props.line.stations.length - 1}
         day={props.day}

@@ -8,6 +8,7 @@
   color: #fff;
   box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 .h1 {
