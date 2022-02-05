@@ -19,7 +19,6 @@ function toArray(obj) {
 }
 
 module.exports = function (assets) {
-  // const buildID = fs.readFileSync(path.join(__dirname, '..', '.next', 'BUILD_ID'), 'utf8');
   const buildID = Math.random().toString().slice(2, 10);
   const swContent = fs.readFileSync(SW_PATH, 'utf8');
   const assetsArray = toArray(assets)
