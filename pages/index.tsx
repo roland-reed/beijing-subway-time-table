@@ -77,6 +77,7 @@ const Home: NextPage = () => {
     <div className={styles.app}>
       <Head>
         <title>北京地铁时刻表</title>
+        <meta name="viewport" content="initial-scale=1, viewport-fit=cover"></meta>
       </Head>
       {show && <Header lineCode={state.line} />}
       {show && <Toolbar day={state.day} setDay={setDay} />}
