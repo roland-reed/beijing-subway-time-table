@@ -61,6 +61,9 @@ const Home: NextPage = () => {
 
   React.useEffect(() => {
     setShow(true);
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
   }, []);
 
   return (

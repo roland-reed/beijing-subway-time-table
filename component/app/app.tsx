@@ -2,7 +2,7 @@ import React from 'react';
 import { Line } from '../line';
 import { LineSelector } from '../line-selector';
 import { lineMap } from '../../data';
-import { Day, Line as LineProps } from '../../shared';
+import { Day } from '../../shared';
 
 interface AppProps {
   lineCode: string;
