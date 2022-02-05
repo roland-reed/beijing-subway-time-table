@@ -6,6 +6,7 @@ import { App } from '../component/app';
 import { Toolbar } from '../component/toolbar';
 import { DAY, Day } from '../shared';
 import { reducer } from '../shared/reducer';
+import styles from './index.module.css';
 
 const LINE_RESTORE_KEY = 'LINE_RESTORE_KEY';
 
@@ -73,7 +74,7 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <>
+    <div className={styles.app}>
       <Head>
         <title>北京地铁时刻表</title>
       </Head>
@@ -91,7 +92,7 @@ const Home: NextPage = () => {
           />
         )}
       </div>
-    </>
+    </div>
   );
 };
 

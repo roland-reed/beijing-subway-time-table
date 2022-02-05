@@ -1,7 +1,7 @@
 .line-wrapper {
   display: flex;
   flex-direction: row;
-  height: 500px;
+  height: calc(100vh - 180px);
   overflow: hidden;
   justify-content: space-between;
   padding: 0 1em;
