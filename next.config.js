@@ -31,7 +31,6 @@ module.exports = withSvgr({
       config.plugins.push(
         new AssetsPlugin({
           processOutput(assets) {
-            console.log(assets);
             generateSW(assets);
             return JSON.stringify(assets);
           },
