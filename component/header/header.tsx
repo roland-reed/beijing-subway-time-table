@@ -12,7 +12,10 @@ export function Header(props: { lineCode: string }): React.ReactElement {
       className={styles.header}
     >
       <h1 className={styles.h1}>
-        北京地铁时刻表<span className={styles.hint}>仅供参考</span>
+        北京地铁时刻表
+        <span style={{ color: line.fontColorReverse ? '#999' : undefined }} className={styles.hint}>
+          仅供参考
+        </span>
       </h1>
     </header>
   );
