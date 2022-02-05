@@ -17,6 +17,7 @@ self.addEventListener('install', (event) => {
 // The activate handler takes care of cleaning up old caches.
 self.addEventListener('activate', (event) => {
   const currentCaches = [CACHE_NAME, RUNTIME];
+
   event.waitUntil(
     caches
       .keys()
@@ -42,6 +43,14 @@ self.addEventListener('fetch', (event) => {
   if (event.request.url.startsWith(self.location.origin)) {
     event.respondWith(
       caches.match(event.request).then((cachedResponse) => {
+        if (event.request.url === '/') {
+          caches.open(RUNTIME).then((cache) => {
+            fetch(event.request).then((response) => {
+              cache.put(event.request, response);
+            });
+          });
+        }
+
         if (cachedResponse) {
           return cachedResponse;
         }
